@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LyricsConnect - Connect with Musicians</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <div class="nav-content">
+                <div class="logo">
+                    <span class="logo-icon">🎵</span>
+                    <h1>LyricsConnect</h1>
+                </div>
+                <div class="nav-links" id="navLinks">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#features" class="nav-link">Features</a>
+                    <button class="btn-login" onclick="showLoginModal()">Login</button>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- HERO SECTION -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h2>Connect Your Lyrics With Your Voice</h2>
+                <p>A platform where lyricists and singers collaborate to create amazing music together.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="showSignupModal('lyricist')">I Write Lyrics</button>
+                    <button class="btn btn-secondary" onclick="showSignupModal('singer')">I Sing</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="music-animation">
+                    <span class="note">♪</span>
+                    <span class="note">♫</span>
+                    <span class="note">♪</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES SECTION -->
+        <section id="features" class="features">
+            <h2>Why Choose LyricsConnect?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">✍️</div>
+                    <h3>Share Your Lyrics</h3>
+                    <p>Post your original lyrics and reach singers looking for new content.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎤</div>
+                    <h3>Find Great Lyrics</h3>
+                    <p>Browse and request lyrics from talented lyricists worldwide.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📤</div>
+                    <h3>Share Audio</h3>
+                    <p>Exchange vocal recordings directly with your collaborators.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>Direct Messaging</h3>
+                    <p>Communicate seamlessly with your music partners.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <h3>Build Reputation</h3>
+                    <p>Earn ratings and reviews from collaborators.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Global Community</h3>
+                    <p>Connect with musicians from around the world.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="about">
+            <div class="about-content">
+                <h2>About LyricsConnect</h2>
+                <p>LyricsConnect is a revolutionary platform designed to bridge the gap between lyricists and singers. Whether you're a songwriter looking for the perfect voice or a vocalist searching for inspiring lyrics, LyricsConnect is your space to create magic.</p>
+                <div class="stats">
+                    <div class="stat">
+                        <h3>1000+</h3>
+                        <p>Musicians</p>
+                    </div>
+                    <div class="stat">
+                        <h3>500+</h3>
+                        <p>Collaborations</p>
+                    </div>
+                    <div class="stat">
+                        <h3>100+</h3>
+                        <p>Countries</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOGIN MODAL -->
+        <div id="loginModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeLoginModal()">&times;</span>
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email:</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password:</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <p class="modal-footer">Don't have an account? <a href="#" onclick="switchToSignup()">Sign Up</a></p>
+            </div>
+        </div>
+
+        <!-- SIGNUP MODAL -->
+        <div id="signupModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeSignupModal()">&times;</span>
+                <h2>Create Account</h2>
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label for="signupName">Full Name:</label>
+                        <input type="text" id="signupName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email:</label>
+                        <input type="email" id="signupEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password:</label>
+                        <input type="password" id="signupPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userType">I am a:</label>
+                        <select id="userType" required>
+                            <option value="lyricist">Lyricist</option>
+                            <option value="singer">Singer</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </form>
+                <p class="modal-footer">Already have an account? <a href="#" onclick="switchToLogin()">Login</a></p>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>LyricsConnect</h3>
+                    <p>Connecting lyricists and singers worldwide.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#">Facebook</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">Twitter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 LyricsConnect. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
