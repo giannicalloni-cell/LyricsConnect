@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages - LyricsConnect</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard-style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <div class="nav-content">
+                <div class="logo">
+                    <span class="logo-icon">🎵</span>
+                    <h1>LyricsConnect</h1>
+                </div>
+                <div class="nav-links" id="navLinks">
+                    <a href="dashboard.html" class="nav-link">Dashboard</a>
+                    <a href="messages.html" class="nav-link active">Messages</a>
+                    <button class="btn-login" id="userBtn" onclick="toggleUserMenu()">👤 User</button>
+                    <button class="btn-secondary" onclick="logout()">Logout</button>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- MESSAGES SECTION -->
+        <section class="messages-container">
+            <div class="messages-wrapper">
+                <!-- CONVERSATIONS LIST -->
+                <aside class="conversations-sidebar">
+                    <div class="sidebar-header">
+                        <h2>💬 Messages</h2>
+                        <div class="online-status" id="onlineStatus">🔴 Offline</div>
+                    </div>
+                    <div class="conversations-search">
+                        <input type="text" id="searchConversation" placeholder="Search conversations...">
+                    </div>
+                    <div class="conversations-list" id="conversationsList">
+                        <p style="color: #999; text-align: center; padding: 2rem;">No conversations yet</p>
+                    </div>
+                </aside>
+
+                <!-- CHAT AREA -->
+                <main class="chat-main">
+                    <div class="chat-container" id="chatContainer" style="display: none;">
+                        <!-- CHAT HEADER -->
+                        <div class="chat-header">
+                            <div class="chat-header-info">
+                                <h3 id="chatWith">Select a conversation</h3>
+                                <span id="userStatus" class="user-status">🔴 Offline</span>
+                            </div>
+                            <button class="btn-close" onclick="closeChat()">✕</button>
+                        </div>
+
+                        <!-- MESSAGES -->
+                        <div class="messages-area" id="messagesArea">
+                            <p style="color: #999; text-align: center; margin-top: 2rem;">Start a conversation</p>
+                        </div>
+
+                        <!-- TYPING INDICATOR -->
+                        <div id="typingIndicator" class="typing-indicator" style="display: none;">
+                            <span></span><span></span><span></span>
+                            <p>User is typing...</p>
+                        </div>
+
+                        <!-- MESSAGE INPUT -->
+                        <div class="chat-input-area">
+                            <input type="text" id="messageInput" placeholder="Type a message..." onkeypress="handleMessageKeypress(event)">
+                            <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+                        </div>
+                    </div>
+
+                    <!-- EMPTY STATE -->
+                    <div class="chat-empty" id="chatEmpty">
+                        <div class="empty-state">
+                            <span style="font-size: 4rem; margin-bottom: 1rem;">💬</span>
+                            <h2>Select a conversation to start chatting</h2>
+                            <p>Your conversations will appear on the left</p>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>LyricsConnect Messages</h3>
+                    <p>Real-time collaboration chat</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 LyricsConnect. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="socket-client.js"></script>
+    <script src="app.js"></script>
+    <script src="messages.js"></script>
+</body>
+</html>

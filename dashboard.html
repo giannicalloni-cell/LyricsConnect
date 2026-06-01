@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - LyricsConnect</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard-style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <div class="nav-content">
+                <div class="logo">
+                    <span class="logo-icon">🎵</span>
+                    <h1>LyricsConnect</h1>
+                </div>
+                <div class="nav-links" id="navLinks">
+                    <a href="dashboard.html" class="nav-link active">Dashboard</a>
+                    <a href="messages.html" class="nav-link">Messages</a>
+                    <button class="btn-login" id="userBtn" onclick="toggleUserMenu()">👤 User</button>
+                    <button class="btn-secondary" onclick="logout()">Logout</button>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- DASHBOARD SECTION -->
+        <section class="dashboard-container">
+            <!-- SIDEBAR -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <h2>Menu</h2>
+                </div>
+                <nav class="sidebar-nav">
+                    <button class="nav-item active" onclick="showSection('profile')">👤 My Profile</button>
+                    <button class="nav-item" onclick="showSection('my-lyrics')">✏️ My Lyrics</button>
+                    <button class="nav-item" onclick="showSection('collaborations')">🤝 Collaborations</button>
+                    <button class="nav-item" onclick="showSection('browse')">🔍 Browse</button>
+                    <button class="nav-item" onclick="showSection('requests')">📬 Requests <span class="badge" id="requestBadge">0</span></button>
+                </nav>
+            </aside>
+
+            <!-- MAIN CONTENT -->
+            <main class="main-content">
+                <!-- PROFILE SECTION -->
+                <div id="profile-section" class="section active">
+                    <div class="section-header">
+                        <h2>👤 My Profile</h2>
+                    </div>
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <img id="profileImage" src="https://via.placeholder.com/150" alt="Profile" class="profile-image">
+                            <div class="profile-info">
+                                <h3 id="profileName">User Name</h3>
+                                <p id="profileType">Lyricist</p>
+                                <div class="profile-stats">
+                                    <div class="stat">
+                                        <span class="stat-label">Rating</span>
+                                        <span class="stat-value" id="profileRating">5.0 ⭐</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-label">Collaborations</span>
+                                        <span class="stat-value" id="profileCollaborations">0</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-label">Followers</span>
+                                        <span class="stat-value" id="profileFollowers">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-bio">
+                            <h4>Bio</h4>
+                            <p id="profileBio">Edit your bio here...</p>
+                        </div>
+                        <button class="btn btn-primary" onclick="editProfile()">Edit Profile</button>
+                    </div>
+                </div>
+
+                <!-- MY LYRICS SECTION -->
+                <div id="my-lyrics-section" class="section">
+                    <div class="section-header">
+                        <h2>✏️ My Lyrics</h2>
+                        <button class="btn btn-primary" onclick="showCreateLyrics()">+ New Lyrics</button>
+                    </div>
+                    <div class="lyrics-grid" id="myLyricsGrid">
+                        <p style="color: #999;">No lyrics yet. Create your first one!</p>
+                    </div>
+                </div>
+
+                <!-- COLLABORATIONS SECTION -->
+                <div id="collaborations-section" class="section">
+                    <div class="section-header">
+                        <h2>🤝 Collaborations</h2>
+                    </div>
+                    <div class="collaborations-list" id="collaborationsList">
+                        <p style="color: #999;">No active collaborations</p>
+                    </div>
+                </div>
+
+                <!-- BROWSE SECTION -->
+                <div id="browse-section" class="section">
+                    <div class="section-header">
+                        <h2>🔍 Browse</h2>
+                        <div class="search-filters">
+                            <input type="text" id="searchInput" placeholder="Search lyrics..." onkeyup="searchLyrics()">
+                            <select id="genreFilter" onchange="filterByGenre()">
+                                <option value="">All Genres</option>
+                                <option value="Pop">Pop</option>
+                                <option value="Rock">Rock</option>
+                                <option value="Hip-Hop">Hip-Hop</option>
+                                <option value="Jazz">Jazz</option>
+                                <option value="Electronic">Electronic</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="browse-grid" id="browseGrid">
+                        <p style="color: #999;">Loading...</p>
+                    </div>
+                </div>
+
+                <!-- REQUESTS SECTION -->
+                <div id="requests-section" class="section">
+                    <div class="section-header">
+                        <h2>📬 Collaboration Requests</h2>
+                    </div>
+                    <div class="requests-list" id="requestsList">
+                        <p style="color: #999;">No pending requests</p>
+                    </div>
+                </div>
+            </main>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>LyricsConnect</h3>
+                    <p>Connect with musicians worldwide</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 LyricsConnect. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- CREATE LYRICS MODAL -->
+    <div id="createLyricsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('createLyricsModal')">&times;</span>
+            <h2>Create New Lyrics</h2>
+            <form id="createLyricsForm">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="lyricsTitle" required>
+                </div>
+                <div class="form-group">
+                    <label>Genre</label>
+                    <select id="lyricsGenre" required>
+                        <option>Pop</option>
+                        <option>Rock</option>
+                        <option>Hip-Hop</option>
+                        <option>Jazz</option>
+                        <option>Electronic</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Lyrics</label>
+                    <textarea id="lyricsContent" rows="10" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="lyricsDescription" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Lyrics</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="socket-client.js"></script>
+    <script src="app.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
